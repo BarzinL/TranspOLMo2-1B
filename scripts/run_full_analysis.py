@@ -248,6 +248,8 @@ def main():
                         help='Skip SAE training (faster)')
     parser.add_argument('--layers', type=str, default=None,
                         help='Comma-separated layer indices to analyze (e.g., "0,6,11")')
+    parser.add_argument('--batch-size', type=int, default=None,
+                        help='Batch size for processing (default: from config.py)')
     parser.add_argument('--output-dir', type=str, default=None,
                         help='Output directory for results (default: ./results)')
 
@@ -303,6 +305,8 @@ def main():
         config.model.dtype = args.dtype
     if args.num_samples is not None:
         config.extraction.num_samples = args.num_samples
+    if args.batch_size is not None:
+        config.extraction.batch_size = args.batch_size
     if args.output_dir is not None:
         config.documentation.output_dir = Path(args.output_dir)
 
